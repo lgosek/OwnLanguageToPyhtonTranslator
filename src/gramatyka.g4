@@ -29,6 +29,8 @@ DIVIDE:     '/';
 EQUAL:      '==';
 LT:         '<';
 GT:         '>';
+LE:         '<=';
+GE:         '>=';
 
 SEMICOL:    ';';
 DOT:        '.';
@@ -125,15 +127,15 @@ operator
   ;
 
 if
-  : IF LPAR logicalOperation RPAR LCURL instructions RCURL elsif* else?
+  : IF LPAR logicalOperation RPAR LCURL instructions? RCURL elsif* else?
   ;
 
 elsif
-  : ELSIF LPAR logicalOperation RPAR LCURL instructions RCURL
+  : ELSIF LPAR logicalOperation RPAR LCURL instructions? RCURL
   ;
 
 else
-  :ELSE LCURL instructions RCURL
+  :ELSE LCURL instructions? RCURL
   ;
 
 logicalOperation
@@ -149,6 +151,8 @@ logicalOperator
   : EQUAL
   | LT
   | GT
+  | LE
+  | GE
   ;
 
 while
