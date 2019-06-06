@@ -37,7 +37,7 @@ DOT:        '.';
 COMMA:      ',';
 
 
-STRING_LITERAL:   '\'' ('\'\'' | ~('\''))* '\'';
+STRING_LITERAL:   '\"' ('\'\'' | ~('\''))* '\"';
 IDENT:            ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 
 NUM_INT:          ('0'..'9')+;
@@ -86,10 +86,10 @@ arguments
   ;
 
 functionBody
-  : instructions? return?
+  : instructions? r_return?
   ;
 
-return
+r_return
   : RETURN values
   ;
 
@@ -99,10 +99,10 @@ instructions
 
 instruction
   : assigment
-  | if
-  | while
-  | for
-  | switch
+  | r_if
+  | r_while
+  | r_for
+  | r_switch
   | functionCall
   ;
 
@@ -126,15 +126,15 @@ operator
   | DIVIDE
   ;
 
-if
-  : IF LPAR logicalOperation RPAR LCURL instructions? RCURL elsif* else?
+r_if
+  : IF LPAR logicalOperation RPAR LCURL instructions? RCURL elsif* r_else?
   ;
 
 elsif
   : ELSIF LPAR logicalOperation RPAR LCURL instructions? RCURL
   ;
 
-else
+r_else
   :ELSE LCURL instructions? RCURL
   ;
 
@@ -155,11 +155,11 @@ logicalOperator
   | GE
   ;
 
-while
+r_while
   : WHILE LPAR logicalOperation RPAR LCURL loopBody RCURL
   ;
 
-for
+r_for
   : FOR LPAR assigment SEMICOL logicalOperation SEMICOL assigment RPAR LCURL loopBody RCURL
   ;
 
@@ -167,19 +167,19 @@ loopBody
     : (instruction|BREAK)*
     ;
 
-switch
+r_switch
   : SWITCH LPAR identifier RPAR LCURL switchContent RCURL
   ;
 
 switchContent
-  : case+ default?
+  : r_case+ r_default?
   ;
 
-case
+r_case
   : CASE LPAR values RPAR LCURL instructions? BREAK? RCURL
   ;
 
-default
+r_default
   : DEFAULT LCURL instructions? BREAK? RCURL
   ;
 
