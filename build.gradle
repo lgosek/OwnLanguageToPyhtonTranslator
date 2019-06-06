@@ -19,6 +19,7 @@ dependencies {
 generateGrammarSource {
     maxHeapSize = "64m"
     arguments += ['-package', 'pl.edu.agh.compilers']
+    arguments += ['-visitor']
     outputDirectory = new File("generated-src/antlr/main/pl/edu/agh/compilers/".toString())
 }
 compileJava.dependsOn generateGrammarSource

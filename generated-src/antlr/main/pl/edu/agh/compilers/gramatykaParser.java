@@ -128,6 +128,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitProgram(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -198,6 +203,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitIdentifier(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitIdentifier(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IdentifierContext identifier() throws RecognitionException {
@@ -237,6 +247,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitValue(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitValue(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -292,6 +307,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitNumber(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final NumberContext number() throws RecognitionException {
@@ -344,6 +364,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitFunctionCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitFunctionCall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -410,6 +435,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitFunctionDeclaration(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitFunctionDeclaration(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunctionDeclarationContext functionDeclaration() throws RecognitionException {
@@ -468,6 +498,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitValues(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitValues(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -535,6 +570,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitArgumentsDeclaration(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitArgumentsDeclaration(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArgumentsDeclarationContext argumentsDeclaration() throws RecognitionException {
@@ -598,6 +638,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitArguments(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitArguments(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArgumentsContext arguments() throws RecognitionException {
@@ -656,6 +701,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitFunctionBody(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitFunctionBody(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -716,6 +766,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_return(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_return(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final R_returnContext r_return() throws RecognitionException {
@@ -759,6 +814,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitInstructions(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitInstructions(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -832,6 +892,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitInstruction(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitInstruction(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -920,6 +985,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitAssigment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitAssigment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AssigmentContext assigment() throws RecognitionException {
@@ -986,6 +1056,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitMathOperation(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitMathOperation(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MathOperationContext mathOperation() throws RecognitionException {
@@ -1046,6 +1121,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitOperand(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitOperand(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final OperandContext operand() throws RecognitionException {
@@ -1101,6 +1181,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitOperator(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1166,6 +1251,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_if(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_if(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1259,6 +1349,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitElsif(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitElsif(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElsifContext elsif() throws RecognitionException {
@@ -1321,6 +1416,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_else(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_else(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1385,6 +1485,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitLogicalOperation(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitLogicalOperation(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LogicalOperationContext logicalOperation() throws RecognitionException {
@@ -1445,6 +1550,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitLogicalOperand(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitLogicalOperand(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LogicalOperandContext logicalOperand() throws RecognitionException {
@@ -1502,6 +1612,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitLogicalOperator(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitLogicalOperator(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LogicalOperatorContext logicalOperator() throws RecognitionException {
@@ -1557,6 +1672,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_while(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_while(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1627,6 +1747,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_for(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_for(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final R_forContext r_for() throws RecognitionException {
@@ -1692,6 +1817,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitLoopBody(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitLoopBody(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1771,6 +1901,11 @@ public class gramatykaParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_switch(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_switch(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final R_switchContext r_switch() throws RecognitionException {
@@ -1827,6 +1962,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitSwitchContent(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitSwitchContent(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1898,6 +2038,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_case(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_case(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1972,6 +2117,11 @@ public class gramatykaParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof gramatykaListener ) ((gramatykaListener)listener).exitR_default(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof gramatykaVisitor ) return ((gramatykaVisitor<? extends T>)visitor).visitR_default(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
