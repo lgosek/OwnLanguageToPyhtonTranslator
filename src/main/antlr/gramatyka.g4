@@ -37,7 +37,7 @@ DOT:        '.';
 COMMA:      ',';
 
 
-STRING_LITERAL:   '\"' ('\'\'' | ~('\''))* '\"';
+STRING_LITERAL:   '"' ('\\' ["\\] | ~["\\\r\n])* '"';
 IDENT:            ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 
 NUM_INT:          ('0'..'9')+;
@@ -46,7 +46,7 @@ NUM_REAL:         ('0'..'9')+ DOT ('0'..'9')+;
 //gramatyka
 
 program
-  : (functionDeclaration | instructions)+ EOF
+  : (functionDeclaration | instructions)+
   ;
 
 identifier
