@@ -135,7 +135,7 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
 //        }
         this.addIndentation(stringBuilder);
         stringBuilder.append(super.visitInstruction(ctx));
-        if(ctx.r_if() == null)
+        if(ctx.r_if() == null && ctx.r_while() == null && ctx.r_for() == null && ctx.r_switch() == null)
             stringBuilder.append("\n");
         return stringBuilder.toString();
 //        return visitChildren(ctx);
