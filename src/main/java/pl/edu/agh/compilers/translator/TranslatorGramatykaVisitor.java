@@ -222,7 +222,16 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
 
     @Override
     public String visitR_while (gramatykaParser.R_whileContext ctx) {
-        return super.visitR_while(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(ctx.WHILE());
+        stringBuilder.append(" ");
+        stringBuilder.append(visitLogicalOperation(ctx.logicalOperation()));
+        stringBuilder.append(":\n");
+        this.indentationLevel += 1;
+        stringBuilder.append(visitLoopBody(ctx.loopBody()));
+        this.indentationLevel -= 1;
+        return stringBuilder.toString();
+//        return super.visitR_while(ctx);
     }
 
     @Override

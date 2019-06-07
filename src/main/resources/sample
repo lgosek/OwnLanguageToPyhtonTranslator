@@ -9,6 +9,11 @@ fun foo (a,b) {
         z = bar()
     } else{
         z = 3
+        f = 5
+        while(f>1){
+            bar(1,2)
+            f = f-1
+        }
     }
 
     return z
