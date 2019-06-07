@@ -12,7 +12,7 @@ public class TranslatorMain {
     public static void main (String[] args) {
         CharStream inputStream = null;
         try {
-            inputStream = CharStreams.fromFileName("/home/lukasz/Dokumenty/Kompilatory/Projekt/src/main/resources/sample");
+            inputStream = CharStreams.fromFileName("src/main/resources/sample");
         } catch (IOException e) {
             e.printStackTrace();
         }
