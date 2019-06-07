@@ -1,0 +1,17 @@
+fun foo (a,b) {
+    x = a + b
+    x = x * 2
+
+    if(x==1){
+        z = 1
+        c = 3 * 12.5
+    } elsif(x>=2){
+        z = bar()
+    } else{
+        z = 3
+    }
+
+    return z
+}
+
+x = 12
