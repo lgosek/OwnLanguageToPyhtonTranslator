@@ -17,6 +17,7 @@ fun foo (a,b) {
 
         for(i = 0; i<3; i=i+1){
             z = 3
+            break
         }
 
         switch(p){

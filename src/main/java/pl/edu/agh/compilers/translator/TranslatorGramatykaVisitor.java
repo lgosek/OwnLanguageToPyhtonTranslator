@@ -266,9 +266,9 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
         stringBuilder.append("while true:\n");
         indentationLevel += 1;
         stringBuilder.append(visitSwitchContent(ctx.switchContent()));
-        indentationLevel -= 1;
         addIndentation(stringBuilder);
         stringBuilder.append("break\n");
+        indentationLevel -= 1;
 
         return stringBuilder.toString();
     }
