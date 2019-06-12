@@ -13,6 +13,7 @@ fun foo (a,b) {
         while(f>1){
             bar(1,2)
             f = f-1
+            break
         }
 
         for(i = 0; i<3; i=i+1){

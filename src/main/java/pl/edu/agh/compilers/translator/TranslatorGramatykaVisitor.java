@@ -257,7 +257,16 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
 
     @Override
     public String visitLoopBody (gramatykaParser.LoopBodyContext ctx) {
-        return super.visitLoopBody(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i<ctx.getChildCount();i++){
+            if(ctx.getChild(i) instanceof gramatykaParser.InstructionContext){
+                stringBuilder.append(visitInstruction((gramatykaParser.InstructionContext)ctx.getChild(i)));
+            }else{
+                addIndentation(stringBuilder);
+                stringBuilder.append("break\n");
+            }
+        }
+        return stringBuilder.toString();
     }
 
     @Override
