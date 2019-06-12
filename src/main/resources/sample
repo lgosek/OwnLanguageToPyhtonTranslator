@@ -14,6 +14,25 @@ fun foo (a,b) {
             bar(1,2)
             f = f-1
         }
+
+        for(i = 0; i<3; i=i+1){
+            z = 3
+        }
+
+        switch(p){
+            case(1){
+                a=1
+
+            }
+            case(2){
+                a=2
+                break
+            }
+            default{
+                a=7
+            }
+        }
+
     }
 
     return z

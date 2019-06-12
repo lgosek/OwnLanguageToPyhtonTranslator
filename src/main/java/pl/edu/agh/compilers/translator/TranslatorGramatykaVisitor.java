@@ -1,5 +1,7 @@
 package pl.edu.agh.compilers.translator;
 
+
+
 import pl.edu.agh.compilers.gramatykaBaseVisitor;
 import pl.edu.agh.compilers.gramatykaParser;
 
@@ -236,8 +238,22 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
 
     @Override
     public String visitR_for (gramatykaParser.R_forContext ctx) {
-        return super.visitR_for(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(visitAssigment(ctx.assigment(0)));
+        stringBuilder.append("\n");
+        addIndentation(stringBuilder);
+        stringBuilder.append("while ");
+        stringBuilder.append(visitLogicalOperation(ctx.logicalOperation()));
+        stringBuilder.append(":\n");
+        this.indentationLevel += 1;
+        stringBuilder.append(visitLoopBody(ctx.loopBody()));
+        addIndentation(stringBuilder);
+        stringBuilder.append(visitAssigment(ctx.assigment(1)));
+        stringBuilder.append("\n");
+        this.indentationLevel -= 1;
+        return stringBuilder.toString();
     }
+
 
     @Override
     public String visitLoopBody (gramatykaParser.LoopBodyContext ctx) {
@@ -246,22 +262,61 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
 
     @Override
     public String visitR_switch (gramatykaParser.R_switchContext ctx) {
-        return super.visitR_switch(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("while true:\n");
+        indentationLevel += 1;
+        stringBuilder.append(visitSwitchContent(ctx.switchContent()));
+        indentationLevel -= 1;
+        addIndentation(stringBuilder);
+        stringBuilder.append("break\n");
+
+        return stringBuilder.toString();
     }
 
     @Override
     public String visitSwitchContent (gramatykaParser.SwitchContentContext ctx) {
-        return super.visitSwitchContent(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        for(gramatykaParser.R_caseContext c: ctx.r_case()){
+            stringBuilder.append(visitR_case(c));
+        }
+        if(ctx.r_default()!=null){
+            stringBuilder.append((visitR_default(ctx.r_default())));
+        }
+
+        return stringBuilder.toString();
     }
 
     @Override
     public String visitR_case (gramatykaParser.R_caseContext ctx) {
-        return super.visitR_case(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        addIndentation(stringBuilder);
+        stringBuilder.append("if ");
+        gramatykaParser.R_switchContext parent = (gramatykaParser.R_switchContext) ctx.getParent().getParent().getRuleContext();
+        stringBuilder.append(visitIdentifier(parent.identifier()));
+        stringBuilder.append(" == ");
+        stringBuilder.append(visitValues(ctx.values()));
+        stringBuilder.append(":\n");
+        indentationLevel += 1;
+        stringBuilder.append(visitInstructions(ctx.instructions()));
+        if(ctx.BREAK()!=null){
+            addIndentation(stringBuilder);
+            stringBuilder.append("break\n");
+        }
+
+        indentationLevel -= 1;
+
+        return stringBuilder.toString();
     }
 
     @Override
     public String visitR_default (gramatykaParser.R_defaultContext ctx) {
-        return super.visitR_default(ctx);
+        StringBuilder stringBuilder = new StringBuilder();
+        addIndentation(stringBuilder);
+        stringBuilder.append("if true:\n");
+        indentationLevel += 1;
+        stringBuilder.append(visitInstructions(ctx.instructions()));
+        indentationLevel -= 1;
+        return stringBuilder.toString();
     }
 
     @Override
