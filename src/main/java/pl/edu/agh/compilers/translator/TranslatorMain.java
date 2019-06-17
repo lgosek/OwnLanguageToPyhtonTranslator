@@ -6,19 +6,34 @@ import org.antlr.v4.runtime.CharStreams;
 import pl.edu.agh.compilers.gramatykaLexer;
 import pl.edu.agh.compilers.gramatykaParser;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class TranslatorMain {
     public static void main (String[] args) {
+        String filename = null;
+        String outFilename = null;
+        try {
+            filename = args[0];
+        } catch (Exception e) {
+            System.err.println("Nie podano pliku wejściowego");
+            return;
+        }
+        try {
+            outFilename = args[1];
+        } catch (Exception e) {
+            System.err.println("Nie podano nazwy pliku wyjściowego");
+            return;
+        }
         CharStream inputStream = null;
         try {
-            inputStream = CharStreams.fromFileName("src/main/resources/sample");
+            inputStream = CharStreams.fromFileName(filename);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.err.println("Błąd odczytu pliku wejściowego");
+            return;
         }
-
-        if(inputStream == null)
-            System.out.println("error");
 
         gramatykaLexer gramatykaLexer = new gramatykaLexer(inputStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(gramatykaLexer);
@@ -28,7 +43,16 @@ public class TranslatorMain {
         TranslatorGramatykaVisitor visitor = new TranslatorGramatykaVisitor();
         String result = visitor.visit(programContext);
 
-//        TODO write to file instead of sout
-        System.out.println(result);
+//        System.out.println(result);
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(outFilename));
+            writer.write(result);
+
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Błąd zapisu do pliku wyjściowego");
+        }
     }
 }
