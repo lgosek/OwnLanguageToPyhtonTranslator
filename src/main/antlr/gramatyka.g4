@@ -68,7 +68,7 @@ functionCall
   ;
 
 functionDeclaration
-  : FUN identifier LPAR argumentsDeclaration RPAR LCURL functionBody RCURL
+  : FUN identifier LPAR argumentsDeclaration? RPAR LCURL functionBody RCURL
   ;
 
 values

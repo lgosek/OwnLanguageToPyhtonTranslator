@@ -14,7 +14,7 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
     @Override
     public String visitProgram (gramatykaParser.ProgramContext ctx) {
         StringBuilder programBuilder = new StringBuilder();
-        programBuilder.append("# Generated File\n\n");
+//        programBuilder.append("# Generated File\n\n");
         programBuilder.append(visitChildren(ctx));
 
         return programBuilder.toString();
@@ -69,7 +69,8 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
         builder.append("def ");
         builder.append(visitIdentifier(ctx.identifier()));
         builder.append("(");
-        builder.append(visitArgumentsDeclaration(ctx.argumentsDeclaration()));
+        if(ctx.argumentsDeclaration()!=null)
+            builder.append(visitArgumentsDeclaration(ctx.argumentsDeclaration()));
         builder.append(")");
         builder.append(":\n");
         this.indentationLevel += 1;
@@ -89,6 +90,8 @@ public class TranslatorGramatykaVisitor extends gramatykaBaseVisitor<String> {
     @Override
     public String visitArgumentsDeclaration (gramatykaParser.ArgumentsDeclarationContext ctx) {
 //        return super.visitArgumentsDeclaration(ctx);
+//        if(ctx.identifier().isEmpty())
+//            return "";
         return ctx.getText();
     }
 
